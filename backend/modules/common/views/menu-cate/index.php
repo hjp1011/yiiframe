@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                 <?php } ?>
                 <li class="active"><a href="<?= Url::to(['menu-cate/index']) ?>"> <?=Yii::t('app', '菜单分类')?></a></li>
                 <li class="pull-right">
-                    <?= Html::create(['ajax-edit'], Yii::t('app', '创建'), [
+                    <?= Html::create(['ajax-edit'],  [
                         'data-toggle' => 'modal',
                         'data-target' => '#ajaxModalLg',
                     ]); ?>
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                 'template' => '{ajax-edit} {status} {delete}',
                                 'buttons' => [
                                     'ajax-edit' => function ($url, $model, $key) {
-                                        return Html::edit(['ajax-edit', 'id' => $model->id], Yii::t('app', '编辑'), [
+                                        return Html::edit(['ajax-edit', 'id' => $model->id], [
                                             'data-toggle' => 'modal',
                                             'data-target' => '#ajaxModalLg',
                                         ]);

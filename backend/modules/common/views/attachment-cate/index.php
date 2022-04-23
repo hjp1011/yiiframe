@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <li><a href="<?= Url::to(['attachment/index']) ?>"> 资源文件</a></li>
                 <li class="active"><a href="<?= Url::to(['attachment-cate/index']) ?>"> 资源分类</a></li>
                 <li class="pull-right">
-                    <?= Html::create(['ajax-edit'], '创建', [
+                    <?= Html::edit(['ajax-edit'],[
                         'data-toggle' => 'modal',
                         'data-target' => '#ajaxModalLg',
                     ]) ?>

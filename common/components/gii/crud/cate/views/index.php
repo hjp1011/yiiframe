@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= "<?= " ?>Html::encode($this->title) ?>
                 </h2>
                 <div class="box-tools">
-                    <?= "<?= " ?> Html::create(['edit'], Yii::t('app','Create'), [
+                    <?= "<?= " ?> Html::create(['edit'],  [
                         'data-toggle' => 'modal',
                         'data-target' => '#ajaxModalLg',
                     ])?>
@@ -108,7 +108,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                         return Html::status($model->status);
                     },
                     'edit' => function ($url, $model, $key) {
-                        return Html::edit(['edit', 'id' => $model->id], Yii::t('app','Edit'), [
+                        return Html::edit(['edit', 'id' => $model->id], [
                         'data-toggle' => 'modal',
                         'data-target' => '#ajaxModalLg',
                     ]);

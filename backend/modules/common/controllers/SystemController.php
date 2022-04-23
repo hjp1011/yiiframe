@@ -54,14 +54,15 @@ class SystemController extends BaseController
                     break;
                 }
             }
-            include Yii::getAlias('@root').'/update/sql.php';
+            if(file_exists(Yii::getAlias('@root').'/update/sql.php'))
+                include Yii::getAlias('@root').'/update/sql.php';
             if (file_exists(Yii::getAlias('@root').'/update.zip')) unlink(Yii::getAlias('@root').'/update.zip');
             if (file_exists(Yii::getAlias('@root').'/update/sql.php')) unlink(Yii::getAlias('@root').'/update/sql.php');
 
             if (!$flag) {
                 return $this->message('更新文件失败,请手动将/update目录下的文件覆盖到站点根目录!', $this->redirect(['info']));
             }
-            // Gethttp::delDirAndFile(Yii::getAlias('@root').'/update','update');
+            Gethttp::delDirAndFile(Yii::getAlias('@root').'/update','update');
             return $this->message('升级完成', $this->redirect(['info']));
         }else{
             return $this->message('更新文件不存在或站点没有读写权限,升级失败！', $this->redirect(['info']));
@@ -94,7 +95,7 @@ class SystemController extends BaseController
         if (is_file($root . '/' . $target)) {
             if(@file_put_contents($root . '/' . $target, file_get_contents($root . '/' . $source)))
                 return true;
-            else 
+            else
                 return false;
         }
         @mkdir(dirname($root . '/' . $target), 0777, true);

@@ -23,7 +23,7 @@ class Html extends BaseHtml
      * @param array $options
      * @return string
      */
-    public static function create(array $url, $content = 'Create', $options = [])
+    public static function create(array $url, $options = [], $content = '创建')
     {
         $options = ArrayHelper::merge([
             'class' => "btn btn-primary btn-xs"
@@ -40,7 +40,7 @@ class Html extends BaseHtml
      * @param array $options
      * @return string
      */
-    public static function edit(array $url, $content = 'Edit', $options = [])
+    public static function edit(array $url, $options = [], $content = '编辑')
     {
         $options = ArrayHelper::merge([
             'class' => 'btn btn-primary btn-sm',
@@ -56,7 +56,7 @@ class Html extends BaseHtml
      * @param array $options
      * @return string
      */
-    public static function delete(array $url, $content = 'Delete', $options = [])
+    public static function delete(array $url, $options = [], $content = '删除')
     {
         $options = ArrayHelper::merge([
             'class' => 'btn btn-danger btn-sm',
@@ -65,7 +65,7 @@ class Html extends BaseHtml
 
         return self::a(Yii::t('app',$content), $url, $options);
     }
-    public static function reset(array $url, $content = '重置', $options = [])
+    public static function reset(array $url, $options = [], $content = '重置')
     {
         $options = ArrayHelper::merge([
             'class' => 'btn btn-danger btn-sm',
@@ -73,6 +73,82 @@ class Html extends BaseHtml
         ], $options);
 
         return self::a($content, $url, $options);
+    }
+
+    /**
+     * 查看
+     *
+     * @param $url
+     * @param array $options
+     * @return string
+     */
+    public static function view(array $url,$options = [], $content = '查看')
+    {
+        $options = ArrayHelper::merge([
+            'class' => 'btn btn-primary btn-sm',
+        ], $options);
+
+        return self::a(Yii::t('app',$content), $url, $options);
+    }
+    /**
+     * 导出
+     *
+     * @param $url
+     * @param array $options
+     * @return string
+     */
+    public static function export(array $url,$options = [], $content = '导出')
+    {
+        $options = ArrayHelper::merge([
+            'class' => 'btn btn-primary btn-xs',
+        ], $options);
+        $content = '<i class="icon ion-plus"></i> ' . Yii::t('app',$content);
+        return self::a(Yii::t('app',$content), $url, $options);
+    }
+    /**
+     * 导入
+     *
+     * @param $url
+     * @param array $options
+     * @return string
+     */
+    public static function import(array $url,$options = [], $content = '导入')
+    {
+        $options = ArrayHelper::merge([
+            'class' => 'btn btn-primary btn-xs',
+        ], $options);
+        $content = '<i class="icon ion-plus"></i> ' . Yii::t('app',$content);
+        return self::a(Yii::t('app',$content), $url, $options);
+    }
+    /**
+     * 分类
+     *
+     * @param $url
+     * @param array $options
+     * @return string
+     */
+    public static function cate(array $url,$options = [], $content = '分类')
+    {
+        $options = ArrayHelper::merge([
+            'class' => 'btn btn-primary btn-xs',
+        ], $options);
+        $content = '<i class="icon ion-plus"></i> ' . Yii::t('app',$content);
+        return self::a(Yii::t('app',$content), $url, $options);
+    }
+    /**
+     * 同步
+     *
+     * @param $url
+     * @param array $options
+     * @return string
+     */
+    public static function sync(array $url,$options = [], $content = '同步')
+    {
+        $options = ArrayHelper::merge([
+            'class' => 'btn btn-primary btn-xs',
+        ], $options);
+        $content = '<i class="icon ion-plus"></i> ' . Yii::t('app',$content);
+        return self::a(Yii::t('app',$content), $url, $options);
     }
     /**
      * 普通按钮

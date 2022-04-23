@@ -101,7 +101,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                         ]);
                                     },
                                     'edit' => function ($url, $model, $key) {
-                                        return Html::edit(['ajax-edit', 'id' => $model->id], Yii::t('app', '编辑'), [
+                                        return Html::edit(['ajax-edit', 'id' => $model->id],  [
                                             'data-toggle' => 'modal',
                                             'data-target' => '#ajaxModalLg',
                                         ]);

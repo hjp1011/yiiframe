@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                     <?= $this->title; ?>
                 </h2>
                 <div class="box-tools">
-                    <?= Html::create(['ajax-edit'], Yii::t('app', '创建'), [
+                    <?= Html::create(['ajax-edit'],[
                         'data-toggle' => 'modal',
                         'data-target' => '#ajaxModalLg',
                     ]); ?>

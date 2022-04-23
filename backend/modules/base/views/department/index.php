@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                     <?= Yii::t('app', '部门管理'); ?>
                 </h2>
                 <div class="box-tools">
-                    <?= Html::create(['ajax-edit'], Yii::t('app', '创建'), [
+                    <?= Html::create(['ajax-edit'],  [
                         'data-toggle' => 'modal',
                         'data-target' => '#ajaxModalLg',
                         'class'=>"btn btn-white btn-sm",
@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                             'template' => ' {status} {edit} {delete}',
                             'buttons' => [
                                 'edit' => function ($url, $model, $key) {
-                                    return Html::edit(['ajax-edit', 'id' => $model->id], Yii::t('app', '编辑'), [
+                                    return Html::edit(['ajax-edit', 'id' => $model->id], [
                                         'data-toggle' => 'modal',
                                         'data-target' => '#ajaxModalLg',
                                     ]);

@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                     <?= $this->title; ?>
                 </h2>
                 <div class="box-tools">
-                    <?= Html::create(['edit','merchant_id' => $merchant_id],Yii::t('app', '创建') ); ?>
+                    <?= Html::create(['edit','merchant_id' => $merchant_id] ); ?>
                 </div>
             </div>
             <div class="box-body table-responsive">
@@ -63,11 +63,11 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                     return Html::status($model['status']);
                                 },
                                 'edit' => function ($url, $model, $key) use ($merchant_id) {
-                                    return Html::edit(['edit', 'id' => $model['id'], 'merchant_id' => $merchant_id],Yii::t('app', '编辑'));
+                                    return Html::edit(['edit', 'id' => $model['id'], 'merchant_id' => $merchant_id]);
                                 },
                                 'delete' => function ($url, $model, $key) use ($merchant_id) {
                                     return Html::delete(['delete', 'id' => $model['id'], 'merchant_id' => $merchant_id,
-                                    ],Yii::t('app', '删除'));
+                                    ]);
                                 },
                             ],
                         ],

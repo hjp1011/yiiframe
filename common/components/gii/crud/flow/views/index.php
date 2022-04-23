@@ -136,7 +136,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                 'template' => '{approve} {edit} {delete}',
                 'buttons' => [
                     'approve' => function ($url, $model, $key) {
-                        return Html::edit(['ajax-approve', 'id' => $model->id], Yii::t('app','Progress'), [
+                        return Html::edit(['ajax-approve', 'id' => $model->id], [
                         'class' => 'btn btn-warning btn-sm',
                         'data-toggle' => 'modal',
                         'data-target' => '#ajaxModalLg',
