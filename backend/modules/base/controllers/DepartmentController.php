@@ -6,6 +6,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use common\traits\Curd;
 use common\models\backend\Department;
+use common\helpers\ResultHelper;
 use backend\controllers\BaseController;
 
 /**
@@ -30,7 +31,7 @@ class DepartmentController extends BaseController
      */
     public function actionIndex()
     {
-//        var_dump(\Yii::$app->user->identity->merchant_id);
+//        var_dump(\Yii::$app->department->identity->merchant_id);
         $query = $this->modelClass::find()
             ->andWhere(['merchant_id' => \Yii::$app->user->identity->merchant_id])
             ->orderBy('sort asc, created_at asc');
@@ -68,5 +69,56 @@ class DepartmentController extends BaseController
             'dropDown' => Yii::$app->services->backendDepartment->getDropDownForEdit(),
         ]);
     }
+    /**
+     * 获取全部客户id
+     *
+     * @return array
+     * @throws \Psr\SimpleCache\InvalidArgumentException
+     */
+    public function actionSyncAllDepartmentid()
+    {
+        $next_departmentid = Yii::$app->request->get('next_departmentid', '');
+        try {
+            list($total, $count, $nextDepartmentid) = Yii::$app->services->backendDepartment->syncAllDepartmentid($next_departmentid);
+            return ResultHelper::json(200, '同步部门id完成', [
+                'total' => $total,
+                'count' => $count,
+                'next_departmentid' => $nextDepartmentid,
+            ]);
+        } catch (\Exception $e) {
+            return ResultHelper::json(422, $e->getMessage());
+        }
+    }
 
+    /**
+     * 开始同步客户数据
+     *
+     * @return array
+     * @throws \EasyWork\Kernel\Exceptions\InvalidConfigException
+     * @throws yii\db\Exception
+     */
+     public function actionSyncDepartment()
+    {
+        $request = Yii::$app->request;
+        $type = $request->post('type', 'all');
+        $page = $request->post('page', 0);
+        // 全部同步
+        if ($type == 'all' && !empty($models = Yii::$app->services->backendDepartment->getFollowListByPage($page))) {
+            // 同步部门信息
+            foreach ($models as $Department) {
+                Yii::$app->services->backendDepartment->syncByDepartmentid($Department['department_id']);
+            }
+            return ResultHelper::json(200, '同步完成', [
+                'page' => $page + 1
+            ]);
+        }
+        return ResultHelper::json(200, '同步完成');
+    }
+    protected function findModel($departmentid)
+    {
+        if (empty($departmentid) || empty(($model = Department::find()->where(['id' => $departmentid])->andFilterWhere(['merchant_id' => Yii::$app->user->identity->merchant_id])->one()))) {
+            return new Department();
+        }
+        return $model;
+    }
 }

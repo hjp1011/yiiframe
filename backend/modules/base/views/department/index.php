@@ -1,8 +1,8 @@
 <?php
 
-use common\helpers\Html;
 use yiiframe\treegrid\TreeGrid;
-
+use common\helpers\Html;
+use common\helpers\Url;
 $this->title = Yii::t('app', '部门管理');
 $this->params['breadcrumbs'][] = ['label' => $this->title];
 
@@ -20,7 +20,12 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                     <?= Html::create(['ajax-edit'], Yii::t('app', '创建'), [
                         'data-toggle' => 'modal',
                         'data-target' => '#ajaxModalLg',
+                        'class'=>"btn btn-white btn-sm",
                     ]) ?>
+                    <?php if(!empty(Yii::$app->params['wechatWorkConfig'])) {?>
+                    <span class="btn btn-white btn-sm" onclick="getAllDepartment()"><i class="fa fa-cloud-download"></i>同步部门</span>
+                    <?php }?>
+
                 </div>
             </div>
             <div class="box-body table-responsive">
@@ -30,7 +35,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                     'parentColumnName' => 'pid',
                     'parentRootValue' => '0', //first parentId value
                     'pluginOptions' => [
-                        'initialState' => 'collapsed',
+                        'initialState' => 'expanded',//expanded,collapsed
                     ],
                     'options' => ['class' => 'table table-hover'],
                     'columns' => [
@@ -50,14 +55,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                 return $str;
                             },
                         ],
-                        [
-                            'attribute' => 'index_block_status',
-                            'format' => 'raw',
-                            'headerOptions' => ['class' => 'col-md-1'],
-                            'value' => function ($model, $key, $index, $column) {
-                                return Html::whether($model->index_block_status);
-                            },
-                        ],
+                        
                         [
                             'attribute' => 'sort',
                             'format' => 'raw',
@@ -66,6 +64,8 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                 return Html::sort($model->sort);
                             },
                         ],
+                        'department_leader',
+                        'status',
                         [
                             'header' => Yii::t('app', '操作'),
                             'class' => 'yii\grid\ActionColumn',
@@ -91,3 +91,42 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
         </div>
     </div>
 </div>
+
+<script>
+    // 同步所有用户id
+    function getAllDepartment() {
+        rfAffirm('同步中,请不要关闭当前页面');
+        syncDepartmentid();
+    }
+    
+    function syncDepartmentid() {
+        $.ajax({
+            type:"get",
+            url:"<?= Url::to(['sync-all-departmentid'])?>",
+            dataType: "json",
+            data: {},
+            success: function(data){
+                syncDepartment('all');
+            }
+        });
+    }
+
+    // 同步用户资料
+    function syncDepartment(type, page = 0, departmentids = null){
+        $.ajax({
+            type:"post",
+            url:"<?= Url::to(['sync-department'])?>",
+            dataType: "json",
+            data: {type:type,page:page,departmentids:departmentids},
+            success: function(data){
+                if (parseInt(data.code) === 200 && data.data.page) {
+                    syncDepartment(type, data.data.page);
+                } else {
+                    rfAffirm(data.message);
+                    window.location.reload();
+                }
+            }
+        });
+    }
+   
+</script>
