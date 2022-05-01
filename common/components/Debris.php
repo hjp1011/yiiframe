@@ -57,7 +57,7 @@ class Debris
 
     public function addonConfig($noCache = false,$name='', $merchant_id = '')
     {
-//        !$merchant_id && $merchant_id = Yii::$app->services->merchant->getId();
+       !$merchant_id && $merchant_id = Yii::$app->services->merchant->getId();
         $app_id = !$merchant_id ? AppEnum::BACKEND : AppEnum::MERCHANT;
 
         $info = AddonHelper::findConfig($noCache,$merchant_id,$name,$app_id);
@@ -102,7 +102,7 @@ class Debris
     public function merchantConfig($name, $noCache = false, $merchant_id = '')
     {
         !$merchant_id && $merchant_id = Yii::$app->services->merchant->getId();
-        !$merchant_id && $merchant_id = 1;
+        // !$merchant_id && $merchant_id = 1;
 
         // 获取缓存信息
         $info = $this->getConfigInfo($noCache, AppEnum::MERCHANT, $merchant_id);
@@ -119,7 +119,7 @@ class Debris
     public function merchantConfigAll($noCache = false, $merchant_id = '')
     {
         !$merchant_id && $merchant_id = Yii::$app->services->merchant->getId();
-        !$merchant_id && $merchant_id = 1;
+        // !$merchant_id && $merchant_id = 1;
 
         $info = $this->getConfigInfo($noCache, AppEnum::MERCHANT, $merchant_id);
 

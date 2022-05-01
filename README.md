@@ -1,4 +1,4 @@
-## YiiFrame 2.1.1
+## YiiFrame
 
 基于Yii2的重量级二次开发框架
 

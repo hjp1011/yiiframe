@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                     'parentColumnName' => 'pid',
                     'parentRootValue' => $role['id'] ?? 0, // first parentId value
                     'pluginOptions' => [
-                        // 'initialState' => 'collapsed',
+                        'initialState' => 'expanded',
                     ],
                     'options' => ['class' => 'table table-hover'],
                     'columns' => [

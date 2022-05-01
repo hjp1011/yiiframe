@@ -17,12 +17,12 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                     <?= Yii::t('app', '部门管理'); ?>
                 </h2>
                 <div class="box-tools">
-                    <?= Html::create(['ajax-edit'],  [
+                    <?= Html::create(['ajax-edit'], [
                         'data-toggle' => 'modal',
                         'data-target' => '#ajaxModalLg',
                         'class'=>"btn btn-white btn-sm",
                     ]) ?>
-                    <?php if(!empty(Yii::$app->params['wechatWorkConfig'])) {?>
+                    <?php if(!empty(Yii::$app->debris->addonConfig(true,'Weixin')['corp_id'])) {?>
                     <span class="btn btn-white btn-sm" onclick="getAllDepartment()"><i class="fa fa-cloud-download"></i>同步部门</span>
                     <?php }?>
 
@@ -55,7 +55,6 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                 return $str;
                             },
                         ],
-                        
                         [
                             'attribute' => 'sort',
                             'format' => 'raw',
@@ -65,7 +64,12 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                             },
                         ],
                         'department_leader',
-                        'status',
+                        [
+                            'attribute' => 'status',
+                            'value' => function($model,$key,$index,$column){
+                                return $model->status==1?'有效':'无效';
+                            }
+                        ],
                         [
                             'header' => Yii::t('app', '操作'),
                             'class' => 'yii\grid\ActionColumn',

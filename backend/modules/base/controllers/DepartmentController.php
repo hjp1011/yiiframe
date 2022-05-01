@@ -31,7 +31,6 @@ class DepartmentController extends BaseController
      */
     public function actionIndex()
     {
-//        var_dump(\Yii::$app->department->identity->merchant_id);
         $query = $this->modelClass::find()
             ->andWhere(['merchant_id' => \Yii::$app->user->identity->merchant_id])
             ->orderBy('sort asc, created_at asc');
@@ -70,7 +69,7 @@ class DepartmentController extends BaseController
         ]);
     }
     /**
-     * 获取全部客户id
+     * 获取全部id
      *
      * @return array
      * @throws \Psr\SimpleCache\InvalidArgumentException
@@ -91,7 +90,7 @@ class DepartmentController extends BaseController
     }
 
     /**
-     * 开始同步客户数据
+     * 开始同步数据
      *
      * @return array
      * @throws \EasyWork\Kernel\Exceptions\InvalidConfigException
@@ -114,11 +113,5 @@ class DepartmentController extends BaseController
         }
         return ResultHelper::json(200, '同步完成');
     }
-    protected function findModel($departmentid)
-    {
-        if (empty($departmentid) || empty(($model = Department::find()->where(['id' => $departmentid])->andFilterWhere(['merchant_id' => Yii::$app->user->identity->merchant_id])->one()))) {
-            return new Department();
-        }
-        return $model;
-    }
+    
 }
