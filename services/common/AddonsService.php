@@ -41,9 +41,12 @@ class AddonsService extends Service
                 ->all();
             $models = [];
         }elseif(Yii::$app->id == 'backend'){
+            if(Yii::$app->services->devPattern->isGroup())
+                $where = ['in', 'group', ['services','plug']];
+                else $where = [];
             $addons = Addons::find()
                 ->select(['title', 'name', 'group', 'icon'])
-//                ->where(['not in', 'group', ['approve']])
+                ->andFilterWhere($where)
                 ->with('bindingMenu')
                 ->asArray()
                 ->all();
