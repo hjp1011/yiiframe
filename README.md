@@ -137,7 +137,7 @@ Github：https://github.com/hjp1011/yiiframe/issues
 
 Gitee：https://gitee.com/hjp1011/yiiframe/issues
 
-QQ群：1107210028
+QQ：21931118
 
 ### 特别鸣谢
 
