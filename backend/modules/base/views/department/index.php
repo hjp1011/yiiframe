@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                         'data-target' => '#ajaxModalLg',
                         'class'=>"btn btn-white btn-sm",
                     ]) ?>
-                    <?php if(!empty(Yii::$app->debris->addonConfig(true,'Weixin')['corp_id'])) {?>
+                    <?php if(!empty(Yii::$app->debris->addonConfig('Weixin')['corp_id'])) {?>
                     <span class="btn btn-white btn-sm" onclick="getAllDepartment()"><i class="fa fa-cloud-download"></i>同步部门</span>
                     <?php }?>
 

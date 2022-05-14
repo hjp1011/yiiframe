@@ -45,7 +45,7 @@ class SmsJob extends BaseObject implements \yii\queue\JobInterface
      */
     public function execute($queue)
     {
-        if(AddonHelper::isInstall('AliyunSms'))
-        Yii::$app->aliyunSmsService->sms->realSend($this->mobile, $this->code, $this->usage, $this->member_id, $this->ip);
+        if(AddonHelper::isInstall('Alisms'))
+        Yii::$app->alismsService->sms->realSend($this->mobile, $this->code, $this->usage, $this->member_id, $this->ip);
     }
 }

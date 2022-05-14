@@ -55,11 +55,14 @@ class Debris
         return $info ? $info : [];
     }
 
-    public function addonConfig($noCache = false,$name='', $merchant_id = '')
+    public function addonConfig($name='', $noCache = true,$backend =false)
     {
-       !$merchant_id && $merchant_id = Yii::$app->services->merchant->getId();
+        $merchant_id = Yii::$app->services->merchant->getId();
         $app_id = !$merchant_id ? AppEnum::BACKEND : AppEnum::MERCHANT;
-
+        if(!$backend) {
+            $app_id = AppEnum::BACKEND;
+            $merchant_id=0;
+        }
         $info = AddonHelper::findConfig($noCache,$merchant_id,$name,$app_id);
         return $info ? $info : [];
     }

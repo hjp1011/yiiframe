@@ -261,7 +261,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
             $works->save();
             //推送短信或消息
             $member = Yii::$app->services->devPattern->getMember($audit->audit_id);
-            if($this->remind==0&&$works->audit_id>0&&$member->mobile &&  \yiiframe\addonhelper\AddonHelper::isInstall('AliyunSms')) Yii::$app->aliyunSmsService->sms->send($member->mobile, \addons\Flow\common\enums\WorkflowEnum::getValue($status[1]), 'audit');
+            if($this->remind==0&&$works->audit_id>0&&$member->mobile &&  \yiiframe\addonhelper\AddonHelper::isInstall('Alisms')) Yii::$app->alismsService->sms->send($member->mobile, \addons\Flow\common\enums\WorkflowEnum::getValue($status[1]), 'audit');
             if($this->remind==1&&$works->audit_id>0 && \yiiframe\addonhelper\AddonHelper::isInstall('Notify')) Yii::$app->notifyService->notify->createMessage('[报修]'.$this->content, $member_id, $works->audit_id);
 
         }
