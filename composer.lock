@@ -966,16 +966,16 @@
         },
         {
             "name": "hjp1011/yii2-authorization",
-            "version": "1.0.1",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hjp1011/authorization.git",
-                "reference": "8fbdd9587c7044487bd2090974b39ce2f9b4a185"
+                "reference": "91626a3e575547db7ca974e75c734bfbcaa502be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hjp1011/authorization/zipball/8fbdd9587c7044487bd2090974b39ce2f9b4a185",
-                "reference": "8fbdd9587c7044487bd2090974b39ce2f9b4a185",
+                "url": "https://api.github.com/repos/hjp1011/authorization/zipball/91626a3e575547db7ca974e75c734bfbcaa502be",
+                "reference": "91626a3e575547db7ca974e75c734bfbcaa502be",
                 "shasum": "",
                 "mirrors": [
                     {
