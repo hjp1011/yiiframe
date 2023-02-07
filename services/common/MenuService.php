@@ -169,11 +169,10 @@ class MenuService extends Service
             ->asArray()
             ->all();
             foreach ($models as $key => $model) {//审批管理菜单下显示已安装的工作流
-                if (strstr($model['url'], '/office/approve/')) {
-                    $workflow_id = \common\helpers\StringHelper::cut('/office/approve/', '/index', $model['url']);
-                    $workflow = \addons\Office\common\models\Workflow::find()->where(['merchant_id' => \Yii::$app->user->identity->merchant_id, 'id' => $workflow_id])->one();
-                    if (!$workflow) unset($models[$key]);
+                if ($model['url']=='/gii'&& !YII_DEBUG) {
+                   unset($models[$key]);
                 }
+                
             }
         return $models;
     }

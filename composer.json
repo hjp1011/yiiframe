@@ -26,7 +26,7 @@
         "kartik-v/yii2-widget-colorinput": "*",
         "hjp1011/yii2-treegrid": "^1.0",
         "hjp1011/yii2-console-migration": "^1.0",
-        "hjp1011/yii2-authorization": "^1.0.0",
+        "hjp1011/yii2-authorization": "1.0.2",
         "hjp1011/yii2-addonhelper": "^1.0.0",
         "hjp1011/yii2-easy-wechat": "^1.0",
         "league/flysystem": "^1.0",
