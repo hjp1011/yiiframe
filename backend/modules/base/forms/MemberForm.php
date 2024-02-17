@@ -64,7 +64,7 @@ class MemberForm extends Model
             'realname' => Yii::t('app', '姓名'),
             'mobile' => Yii::t('app', '手机'),
             'role_id' => Yii::t('app', '角色'),
-            'department_id' => Yii::t('app', '部门'),
+            'department_id' => Yii::t('app', '部门名称'),
 
         ];
     }
@@ -127,7 +127,7 @@ class MemberForm extends Model
                 $member->last_time = time();
             }
 //            $member->username = $this->username;
-            $member->username = $this->mobile;
+            // $member->username = $this->mobile;
             $member->realname = $this->realname;
             $member->mobile = $this->mobile;
             $member->department_id = $this->department_id;

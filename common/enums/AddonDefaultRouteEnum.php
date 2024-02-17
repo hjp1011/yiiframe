@@ -2,7 +2,7 @@
 
 namespace common\enums;
 
-use common\models\common\Addons;
+use yiiframe\plugs\models\Addons;
 
 /**
  * Class AddonsDefaultRouteEnum

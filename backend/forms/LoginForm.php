@@ -2,7 +2,7 @@
 
 namespace backend\forms;
 
-use yiiframe\addonhelper\AddonHelper;
+use yiiframe\plugs\common\AddonHelper;
 use Yii;
 use common\helpers\StringHelper;
 use common\models\backend\Member;

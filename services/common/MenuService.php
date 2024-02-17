@@ -168,11 +168,13 @@ class MenuService extends Service
             ->orderBy('sort asc, id asc')
             ->asArray()
             ->all();
-            foreach ($models as $key => $model) {//审批管理菜单下显示已安装的工作流
-                if ($model['url']=='/gii'&& !YII_DEBUG) {
+            foreach ($models as $key => $model) {
+                if ($model['url']=='/gii'&& !Yii::$app->debris->backendConfig('sys_dev')) {
                    unset($models[$key]);
                 }
-                
+                if ($model['url']=='/plugs'&& !Yii::$app->debris->backendConfig('sys_dev')) {
+                   unset($models[$key]);
+                }
             }
         return $models;
     }

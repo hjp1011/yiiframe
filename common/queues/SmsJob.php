@@ -4,7 +4,7 @@ namespace common\queues;
 
 use Yii;
 use yii\base\BaseObject;
-use yiiframe\addonhelper\AddonHelper;
+use yiiframe\plugs\common\AddonHelper;
 
 /**
  * Class SmsJob

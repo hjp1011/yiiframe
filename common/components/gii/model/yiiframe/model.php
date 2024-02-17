@@ -110,16 +110,10 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
             return $this->hasOne(\addons\Merchants\common\models\Member::class, ['id' => 'member_id']);
         else if (Yii::$app->services->devPattern->isEnterprise())
             return $this->hasOne(\common\models\backend\Member::class, ['id' => 'member_id']);
+        else if (Yii::$app->services->devPattern->isB2B2C()||Yii::$app->services->devPattern->isB2C()||Yii::$app->services->devPattern->isSAAS())
+            return $this->hasOne(\addons\Member\common\models\Member::class, ['id' => 'member_id']);    
     }
-    /**
-    * 关联分类
-    *
-    * @return \yii\db\ActiveQuery
-    */
-    public function getCate()
-    {
-        return $this->hasOne(<?= $className ?>Cate::class, ['id' => 'cate_id']);
-    }
+    
 
     public function beforeSave($insert)
     {

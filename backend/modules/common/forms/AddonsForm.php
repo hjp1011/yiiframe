@@ -3,7 +3,7 @@
 namespace backend\modules\common\forms;
 
 use common\helpers\ArrayHelper;
-use common\models\common\Addons;
+use yiiframe\plugs\models\Addons;
 
 /**
  * Class AddonsForm

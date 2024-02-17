@@ -136,7 +136,7 @@ class MemberController extends BaseController
             if ($member->save()) {
                 Yii::$app->user->logout();
 
-                return ResultHelper::json(200, '修改成功');
+                return ResultHelper::json(200,Yii::t('app','修改成功'));
             }
 
             return ResultHelper::json(404, $this->analyErr($member->getFirstErrors()));

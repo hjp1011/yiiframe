@@ -21,9 +21,9 @@ class GenderEnum extends BaseEnum
     public static function getMap(): array
     {
         return [
-            self::UNKNOWN => \Yii::t('app', '男'),
-            self::MAN => \Yii::t('app', '女'),
-            self::WOMAN => \Yii::t('app', '保密'),
+            self::UNKNOWN => \Yii::t('app', '保密'),
+            self::MAN => \Yii::t('app', '男'),
+            self::WOMAN => \Yii::t('app', '女'),
         ];
     }
 }

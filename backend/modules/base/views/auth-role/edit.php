@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
         var userTreeIds = getCheckTreeIds("userTree");
         var plugTreeIds = getCheckTreeIds("plugTree");
 
-        rfAffirm('保存中...');
+        rfAffirm("<?=Yii::t('app','保存中')?>"+'...',"<?=Yii::t('app','一个基于Yii2的安全、高效的开发框架')?>","<?=Yii::t('app','确认')?>");
 
         $.ajax({
             type: "post",
@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                 if (parseInt(data.code) === 200) {
                     window.location = "<?= Url::to(['index', 'merchant_id' => $merchant_id])?>";
                 } else {
-                    rfError(data.message);
+                    rfError(data.message,"<?=Yii::t('app','一个基于Yii2的安全、高效的开发框架')?>","<?=Yii::t('app','确认')?>");
                 }
             }
         });

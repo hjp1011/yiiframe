@@ -3,6 +3,8 @@
 use yiiframe\treegrid\TreeGrid;
 use common\helpers\Html;
 use common\helpers\Url;
+use common\enums\StatusEnum;
+
 $this->title = Yii::t('app', '部门管理');
 $this->params['breadcrumbs'][] = ['label' => $this->title];
 
@@ -23,9 +25,8 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                         'class'=>"btn btn-white btn-sm",
                     ]) ?>
                     <?php if(!empty(Yii::$app->debris->addonConfig('Weixin')['corp_id'])) {?>
-                    <span class="btn btn-white btn-sm" onclick="getAllDepartment()"><i class="fa fa-cloud-download"></i>同步部门</span>
+                    <span class="btn btn-white btn-sm" onclick="getAllDepartment()"><i class="fa fa-cloud-download"></i><?=Yii::t('app','同步')?></span>
                     <?php }?>
-
                 </div>
             </div>
             <div class="box-body table-responsive">
@@ -67,7 +68,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                         [
                             'attribute' => 'status',
                             'value' => function($model,$key,$index,$column){
-                                return $model->status==1?'有效':'无效';
+                                return $model->status==StatusEnum::ENABLED?Yii::t('app','有效'):Yii::t('app','无效');
                             }
                         ],
                         [
@@ -99,7 +100,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
 <script>
     // 同步所有用户id
     function getAllDepartment() {
-        rfAffirm('同步中,请不要关闭当前页面');
+        rfAffirm("<?=Yii::t('app','同步')?>"+'...',"<?=Yii::t('app','请不要关闭当前页面')?>","<?=Yii::t('app','确认')?>");
         syncDepartmentid();
     }
     

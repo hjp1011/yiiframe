@@ -16,7 +16,7 @@ class MemberLevelEnum
      */
     public static function getMap(): array
     {
-        return ArrayHelper::numBetween(2, 70);
+        return ArrayHelper::numBetween(1, 70);
     }
 
     const OR = 0;

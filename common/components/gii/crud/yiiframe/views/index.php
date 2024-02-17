@@ -33,9 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= "<?= " ?>Html::encode($this->title) ?>
                 </h2>
                 <div class="box-tools">
-                    <?= "<?= " ?> Html::create(['export'], Yii::t('app','Export'), ['target' => '_blank']); ?>
-                    <?= "<?= " ?> Html::create(['cate/index'], Yii::t('app','Cate')); ?>
-                    <?= "<?= " ?> Html::create(['create'], Yii::t('app','Create')); ?>
+                    <?= "<?= " ?> Html::create(['export'], ['target' => '_blank'], Yii::t('app','导出')); ?>
+                    <?= "<?= " ?> Html::create(['create'], [],Yii::t('app','创建')); ?>
                 </div>
             </div>
             <div class="box-body table-responsive">
@@ -83,7 +82,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                 'attribute' => 'cate_id',
                 'value' => 'cate.title',
                 'filter' => Html::activeDropDownList(\$searchModel, 'cate_id', \$cates, [
-                    'prompt' => Yii::t('app','All'),
+                    'prompt' => Yii::t('app','全部'),
                     'class' => 'form-control'
                     ]
                 ),

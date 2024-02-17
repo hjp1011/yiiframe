@@ -3,7 +3,7 @@
 use yii\helpers\Json;
 use common\helpers\Html;
 use common\enums\StatusEnum;
-use yiiframe\addonhelper\AddonHelper;
+use yiiframe\plugs\common\AddonHelper;
 ?>
 
 <div class="form-group" style="padding-left: -15px">

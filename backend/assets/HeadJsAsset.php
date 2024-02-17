@@ -15,8 +15,7 @@ class HeadJsAsset extends AssetBundle
     public $baseUrl = '@web/resources';
 
     public $js = [
-        'plugins/toastr/toastr.min.js',
-        'plugins/cropper/cropper.min.js',
+        
     ];
 
     public $jsOptions = [

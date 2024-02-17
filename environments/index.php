@@ -37,7 +37,6 @@ return [
             'backend/web/attachment',
             'console/runtime',
             'addons',
-            'update',
         ],
         'setExecutable' => [
             'yii',
@@ -56,7 +55,6 @@ return [
             'backend/web/attachment',
             'console/runtime',
             'addons',
-            'update',
         ],
         'setExecutable' => [
             'yii',

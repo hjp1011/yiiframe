@@ -2,7 +2,7 @@
 use common\helpers\ImageHelper;
 use common\helpers\Url;
 use common\enums\StatusEnum;
-use yiiframe\addonhelper\AddonHelper;
+use yiiframe\plugs\common\AddonHelper;
 use addons\Notify\common\widgets\notify\Notify;
 ?>
 
@@ -84,6 +84,9 @@ use addons\Notify\common\widgets\notify\Notify;
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#" id="fullScreen"><i class="fa fa-arrows-alt"></i></a>
+                </li>
                 <!-- Control Sidebar Toggle Button -->
                 <li>
                     <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
@@ -95,3 +98,25 @@ use addons\Notify\common\widgets\notify\Notify;
         </div>
     </nav>
 </header>
+
+<script>
+       document.getElementById("fullScreen").onclick=function(){
+          if(document.documentElement.RequestFullScreen){
+            document.documentElement.RequestFullScreen();
+          }
+          //兼容火狐
+          console.log(document.documentElement.mozRequestFullScreen)
+          if(document.documentElement.mozRequestFullScreen){
+            document.documentElement.mozRequestFullScreen();
+          }
+          //兼容谷歌等可以webkitRequestFullScreen也可以webkitRequestFullscreen
+          if(document.documentElement.webkitRequestFullScreen){
+            document.documentElement.webkitRequestFullScreen();
+          }
+          //兼容IE,只能写msRequestFullscreen
+          if(document.documentElement.msRequestFullscreen){
+            document.documentElement.msRequestFullscreen();
+          }
+       }
+       
+</script>

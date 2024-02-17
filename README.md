@@ -39,7 +39,7 @@ YiiFrame 是一个基于Yii2+Bootstrap的快速后台开发框架，可完美运
 
 ![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/YiiFrame-%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86.png "配置管理")
 
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/YiiFrame-%E5%BA%94%E7%94%A8%E7%AE%A1%E7%90%86.png "应用管理")
+![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/YiiFrame-%E5%BA%94%E7%94%A8%E7%AE%A1%E7%90%86.png "插件中心")
 
 ![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/YiiFrame-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.png "权限管理")
 
@@ -161,11 +161,3 @@ YiiFrame 遵循 Apache2 开源协议发布，并提供免费试用，请勿用�
 本项目包含的第三方源码和二进制文件之版权信息另行标注。
 
 版权所有Copyright © 2021-2026 by YiiFrame ([www.yiiframe.com](https://www.yiiframe.com)) All rights reserved。
-
-### 更新日志
-updated 2023.01.14
-
-- 版本更新至2.1.8
-- 修改开发模式下菜单栏显示代码生成菜单的bug
-- 更新yii2-authorization扩展指定版本号为1.0.2
-- 更新后需重新执行composer update或删除vendor和composer.lock后重新执行composer install

@@ -5,11 +5,13 @@ namespace common\components;
 use Yii;
 use yii\base\BootstrapInterface;
 use yii\web\UnauthorizedHttpException;
+use yiiframe\plugs\services\AddonsService;
+use yiiframe\plugs\common\AddonHelper;
 use common\models\backend\Member;
 use common\helpers\StringHelper;
 use common\enums\AppEnum;
-use yiiframe\addonhelper\AddonHelper;
 use common\helpers\ArrayHelper;
+
 /**
  * Class InitConfig
  * @package common\components
@@ -86,7 +88,7 @@ class Init implements BootstrapInterface
      */
     public function getModulesByAddons()
     {
-        $addons = Yii::$app->services->addons->findAllNames();
+        $addons = AddonsService::findAllNames();
 
         $modules = [];
         $merchant = AppEnum::MERCHANT;
@@ -99,7 +101,7 @@ class Init implements BootstrapInterface
             }
 
             $modules[StringHelper::toUnderScore($name)] = [
-                'class' => 'common\components\BaseAddonModule',
+                'class' => 'yiiframe\plugs\components\BaseAddonModule',
                 'name' => $name,
                 'app_id' => $app_id,
             ];

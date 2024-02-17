@@ -9,7 +9,7 @@ use Yii;
  * @package backend\components\gii\crud
  * @author YiiFrame <21931118@qq.com>
  */
-class Generator extends \yii\gii\generators\crud\Generator
+class Generator extends \yiiframe\gii\generators\crud\Generator
 {
     public $listFields;
     public $formFields;
@@ -21,22 +21,22 @@ class Generator extends \yii\gii\generators\crud\Generator
     public function fieldTypes()
     {
         return [
-            'text' => "文本框",
-            'textarea' => "文本域",
-            'time' => "时间",
-            'date' => "日期",
-            'datetime' => "日期时间",
-            'dropDownList' => "下拉文本框",
-            'multipleInput' => "Input组",
-            'radioList' => "单选按钮",
-            'checkboxList' => "复选框",
-            'baiduUEditor' => "百度编辑器",
-            'image' => "图片上传",
-            'images' => "多图上传",
-            'file' => "文件上传",
-            'files' => "多文件上传",
-            'cropper' => "图片裁剪上传",
-            'latLngSelection' => "经纬度选择",
+            'text' => Yii::t('app','文本框'),
+            'textarea' => Yii::t('app','文本域'),
+            'time' => Yii::t('app','时间'),
+            'date' => Yii::t('app','日期'),
+            'datetime' => Yii::t('app','日期时间'),
+            'dropDownList' => Yii::t('app','下拉框'),
+            'multipleInput' => Yii::t('app','Input组'),
+            'radioList' => Yii::t('app','单选按钮'),
+            'checkboxList' => Yii::t('app','复选框'),
+            'baiduUEditor' => Yii::t('app','百度编辑器'),
+            'image' => Yii::t('app','图片上传'),
+            'images' => Yii::t('app','多图上传'),
+            'file' => Yii::t('app','文件上传'),
+            'files' => Yii::t('app','多文件上传'),
+            'cropper' => Yii::t('app','裁剪上传'),
+            'latLngSelection' => Yii::t('app','经纬度选择'),
         ];
     }
 
@@ -68,7 +68,8 @@ class Generator extends \yii\gii\generators\crud\Generator
                 return "\$form->field(\$model, '$attribute')->textarea()";
                 break;
             case 'dropDownList':
-                return "\$form->field(\$model, '$attribute')->dropDownList([])";
+                case 'dropDownList':
+                return "\$form->field(\$model, '$attribute')->dropDownList(\$cates,['prompt' => Yii::t('app','请选择')])";
                 break;
             case 'radioList':
                 return "\$form->field(\$model, '$attribute')->radioList(\common\\enums\StatusEnum::getMap())";
@@ -77,7 +78,10 @@ class Generator extends \yii\gii\generators\crud\Generator
                 return "\$form->field(\$model, '$attribute')->checkboxList(\common\\enums\StatusEnum::getMap())";
                 break;
             case 'baiduUEditor':
+                if (\yiiframe\plugs\common\AddonHelper::isInstall('Ueditor'))
                 return "\$form->field(\$model, '$attribute')->widget(\addons\Ueditor\common\widgets\ueditor\UEditor::class, [])";
+                else 
+                return "\$form->field(\$model, '$attribute')->textarea()";
                 break;
             case 'color':
                 return "\$form->field(\$model, '$attribute')->widget(\kartik\color\ColorInput::class, [
@@ -165,6 +169,7 @@ class Generator extends \yii\gii\generators\crud\Generator
                      ])";
                 break;
             case 'cropper':
+                if (\yiiframe\plugs\common\AddonHelper::isInstall('Webuploader')&&\yiiframe\plugs\common\AddonHelper::isInstall('Cropper'))
                 return "\$form->field(\$model, '$attribute')->widget(\addons\Cropper\common\widgets\cropper\Cropper::class, [
                             'config' => [
                                   // 可设置自己的上传地址, 不设置则默认地址
@@ -174,6 +179,8 @@ class Generator extends \yii\gii\generators\crud\Generator
                                 // 'drive' => 'local',// 默认本地 支持 qiniu/oss/cos 上传
                             ],
                     ]);";
+                else
+                return "\$form->field(\$model, '$attribute')->textInput()";
                 break;
             case 'latLngSelection':
                 return "\$form->field(\$model, '$attribute')->widget(\addons\Map\common\widgets\selectmap\Map::class, [
@@ -181,6 +188,7 @@ class Generator extends \yii\gii\generators\crud\Generator
                     ])->hint('点击地图某处才会获取到经纬度，否则默认北京')";
                 break;
             case 'image':
+                if (\yiiframe\plugs\common\AddonHelper::isInstall('Webuploader'))
                 return "\$form->field(\$model, '$attribute')->widget(\addons\Webuploader\common\widgets\webuploader\Files::class, [
                             'type' => 'images',
                             'theme' => 'default',
@@ -192,9 +200,12 @@ class Generator extends \yii\gii\generators\crud\Generator
                                     'multiple' => false,
                                 ],
                             ]
-                    ]);";
+                    ])->label(Yii::t('app','图片上传'));";
+                else
+                return "\$form->field(\$model, '$attribute')->textInput()";
                 break;
             case 'images':
+                if (\yiiframe\plugs\common\AddonHelper::isInstall('Webuploader'))
                 return "\$form->field(\$model, '$attribute')->widget(\addons\Webuploader\common\widgets\webuploader\Files::class, [
                             'type' => 'images',
                             'theme' => 'default',
@@ -206,9 +217,12 @@ class Generator extends \yii\gii\generators\crud\Generator
                                     'multiple' => true,
                                 ],
                             ]
-                    ]);";
+                    ])->label(Yii::t('app','多图上传'));";
+                else
+                return "\$form->field(\$model, '$attribute')->textInput()";
                 break;
             case 'file':
+                if (\yiiframe\plugs\common\AddonHelper::isInstall('Webuploader'))
                 return "\$form->field(\$model, '$attribute')->widget(\addons\Webuploader\common\widgets\webuploader\Files::class, [
                             'type' => 'files',
                             'theme' => 'default',
@@ -220,9 +234,12 @@ class Generator extends \yii\gii\generators\crud\Generator
                                     'multiple' => false,
                                 ],
                             ]
-                    ]);";
+                    ])->label(Yii::t('app','文件上传'));";
+                else
+                return "\$form->field(\$model, '$attribute')->textInput()";
                 break;
             case 'files':
+                if (\yiiframe\plugs\common\AddonHelper::isInstall('Webuploader'))
                 return "\$form->field(\$model, '$attribute')->widget(\addons\Webuploader\common\widgets\webuploader\Files::class, [
                             'type' => 'files',
                             'theme' => 'default',
@@ -234,7 +251,9 @@ class Generator extends \yii\gii\generators\crud\Generator
                                     'multiple' => true,
                                 ],
                             ]
-                    ]);";
+                    ])->label(Yii::t('app','多文件上传'));";
+                else
+                return "\$form->field(\$model, '$attribute')->textInput()";
                 break;
         }
     }

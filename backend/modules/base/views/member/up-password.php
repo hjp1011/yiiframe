@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                     parent.location.reload();
                     window.location.reload();
                 } else {
-                    rfWarning(data.message);
+                    rfWarning(data.message,"<?=Yii::t('app','一个基于Yii2的安全、高效的开发框架')?>","<?=Yii::t('app','确认')?>");
                 }
             }
         });

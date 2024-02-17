@@ -11,6 +11,7 @@ use common\helpers\TreeHelper;
 use common\models\rbac\AuthRole;
 use common\enums\AppEnum;
 use yii\web\UnauthorizedHttpException;
+use yiiframe\plugs\services\AddonsService;
 
 /**
  * 角色
@@ -98,7 +99,7 @@ class AuthRoleService extends Service
         }
 
         // 获取顶级插件数据
-        $addons = Yii::$app->services->addons->findByNames(array_keys($addonName));
+        $addons = AddonsService::findByNames(array_keys($addonName));
         foreach ($addons as $addon) {
             $addonFormAuth[] = [
                 'id' => $addon['name'],

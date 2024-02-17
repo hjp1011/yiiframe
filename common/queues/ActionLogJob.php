@@ -2,7 +2,7 @@
 
 namespace common\queues;
 
-use yiiframe\addonhelper\AddonHelper;
+use yiiframe\plugs\common\AddonHelper;
 use Yii;
 use yii\base\BaseObject;
 use addons\Monitoring\common\models\ActionLog;

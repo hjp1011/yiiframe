@@ -26,7 +26,8 @@ $form = ActiveForm::begin([
         <?= $form->field($model, 'status')->radioList(StatusEnum::getMap()); ?>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-        <button class="btn btn-primary" type="submit">保存</button>
+        <button class="btn btn-primary" type="submit"><?=Yii::t('app','保存');?></button>
+        <button type="button" class="btn btn-white" data-dismiss="modal"><?=Yii::t('app','关闭');?></button>
+
     </div>
 <?php ActiveForm::end(); ?>

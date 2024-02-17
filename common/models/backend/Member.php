@@ -14,6 +14,7 @@ use common\models\rbac\AuthAssignment;
 use common\models\rbac\AuthRole;
 use common\models\backend\Auth;
 use common\models\backend\Department;
+use common\helpers\StringHelper;
 //use addons\Merchants\common\models\Merchant;
 
 /**
@@ -159,7 +160,22 @@ class Member extends User
 
         return parent::beforeSave($insert);
     }
+    /**
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert) {
+            if (empty($this->username) && !empty($this->mobile)) {
+                $username = StringHelper::random(5) . '_' . substr($this->mobile, -4);
+                $this->username = $username;
+                Member::updateAll(['username' => $username], ['id' => $this->id]);
+            }
+        }
 
+        parent::afterSave($insert, $changedAttributes);
+    }
     /**
      * @return bool
      */

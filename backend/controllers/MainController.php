@@ -2,11 +2,12 @@
 
 namespace backend\controllers;
 
-use yiiframe\addonhelper\AddonHelper;
 use Yii;
-use backend\forms\ClearCache;
 use common\helpers\ResultHelper;
+use yiiframe\plugs\common\AddonHelper;
 use common\helpers\FileHelper;
+use backend\forms\ClearCache;
+use yiiframe\plugs\services\UpdateService;
 
 /**
  * 主控制器
@@ -36,13 +37,16 @@ class MainController extends BaseController
     public function actionSystem()
     {
 
+        $attachment = AddonHelper::isInstall('Webuploader')?Yii::$app->services->backendReport->getAttachment(Yii::$app->services->merchant->getId()):0;
+        $behavior = AddonHelper::isInstall('Monitoring')?Yii::$app->services->backendReport->getActionBehavior(Yii::$app->services->merchant->getId()):0;
+        $logCount = AddonHelper::isInstall('Log')?Yii::$app->services->backendReport->getLog():0;
         return $this->render($this->action->id, [
-//            'member' => Yii::$app->services->backendReport->getMember(Yii::$app->services->merchant->getId())?:0,
-//            'attachment' => Yii::$app->services->backendReport->getAttachment(Yii::$app->services->merchant->getId())?:0,
-//            'behavior' => Yii::$app->services->backendReport->getActionBehavior(Yii::$app->services->merchant->getId())?:0,
-//            'attachmentSize' => round(FileHelper::getDirSize(Yii::getAlias('@attachment'))/1024/1024),
-//            'mysql_size' => Yii::$app->formatter->asShortSize(Yii::$app->services->backend->getDefaultDbSize(), 2),
-//            'logCount' => Yii::$app->services->backendReport->getLog()?:0,
+           'member' => Yii::$app->services->backendReport->getMember(Yii::$app->services->merchant->getId())?:0,
+           'attachmentSize' => round(FileHelper::getDirSize(Yii::getAlias('@attachment'))/1024/1024),
+           'mysql_size' => Yii::$app->formatter->asShortSize(Yii::$app->services->backendReport->getDefaultDbSize()),
+           'attachment' => $attachment,
+           'behavior' => $behavior,
+           'logCount' => $logCount,
         ]);
     }
     /**
@@ -59,18 +63,28 @@ class MainController extends BaseController
         return ResultHelper::json(200, '获取成功', $data);
     }
     /**
-     * 用户指定时间内数量
-     *
+     * 会员统计
      * @param $type
      * @return array
      */
-    public function actionMemberBetweenCount($type)
+    public function actionMemberCount($type)
     {
-        $data = Yii::$app->memberService->member->getBetweenCountStat($type);
+        $data = Yii::$app->services->backendReport->getMemberCountStat($type);
 
         return ResultHelper::json(200, '获取成功', $data);
     }
-
+    /**
+     * 日志统计
+     * @param $type
+     * @return array
+     */
+    public function actionLogCount($type)
+    {
+        if(AddonHelper::isInstall('Log'))
+        $data = Yii::$app->services->backendReport->getLogCountStat($type);
+        else $data=[];
+        return ResultHelper::json(200, '获取成功', $data);
+    }
 
     /**
      * 清理缓存

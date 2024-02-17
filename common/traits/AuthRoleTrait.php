@@ -111,7 +111,7 @@ trait AuthRoleTrait
             Yii::$app->services->rbacAuthItemChild->accredit($model->id, $data['userTreeIds'] ?? [], WhetherEnum::DISABLED, $this->appId);
             Yii::$app->services->rbacAuthItemChild->accredit($model->id, $data['plugTreeIds'] ?? [], WhetherEnum::ENABLED, $this->appId);
 
-            return ResultHelper::json(200, '提交成功');
+            return ResultHelper::json(200, Yii::t('app','提交成功'));
         }
 
         // 获取所有权限还是当前已有的权限
@@ -169,7 +169,7 @@ trait AuthRoleTrait
             return ResultHelper::json(422, $this->getError($model));
         }
 
-        return ResultHelper::json(200, '修改成功');
+        return ResultHelper::json(200, Yii::t('app','修改成功'));
     }
 
     /**

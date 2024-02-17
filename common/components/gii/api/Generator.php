@@ -25,14 +25,13 @@ use yii\helpers\StringHelper;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class Generator extends \yii\gii\Generator
+class Generator extends \yiiframe\gii\Generator
 {
     /**
      * @var string the controller class name
      */
     public $controllerClass;
     public $modelClass;
-
     /**
      * @var string the base class of the controller
      */
@@ -42,13 +41,14 @@ class Generator extends \yii\gii\Generator
      */
     public $actions = 'index';
 
+    public $template = 'yiiframe';
 
     /**
      * {@inheritdoc}
      */
     public function getName()
     {
-        return 'Api Generator';
+        return Yii::t('app','接口生成器');
     }
 
     /**
@@ -56,8 +56,7 @@ class Generator extends \yii\gii\Generator
      */
     public function getDescription()
     {
-        return 'This generator helps you to quickly generate a new controller class with
-            one or several controller actions and their corresponding views.';
+        return Yii::t('app','这个生成器帮助您快速生成一个新的接口控制器类，其中包含一个或多个控制器动作。');
     }
 
     /**
@@ -82,10 +81,10 @@ class Generator extends \yii\gii\Generator
     public function attributeLabels()
     {
         return [
-            'modelClass' => 'Model Class',
-            'baseClass' => 'Base Class',
-            'controllerClass' => 'Controller Class',
-            'actions' => 'Action IDs',
+            'modelClass' => Yii::t('app','模型类'),
+            'baseClass' => Yii::t('app','基类'),
+            'controllerClass' => Yii::t('app','控制器类'),
+            'actions' => Yii::t('app','动作ID'),
         ];
     }
 
@@ -113,19 +112,10 @@ class Generator extends \yii\gii\Generator
     public function hints()
     {
         return [
-            'modelClass' => 'This is the ActiveRecord class associated with the table that CRUD will be built upon.
-                You should provide a fully qualified class name, e.g., <code>app\models\Post</code>.',
-            'controllerClass' => 'This is the name of the controller class to be generated. You should
-                provide a fully qualified namespaced class (e.g. <code>app\controllers\PostController</code>),
-                and class name should be in CamelCase ending with the word <code>Controller</code>. Make sure the class
-                is using the same namespace as specified by your application\'s controllerNamespace property.',
-            'actions' => 'Provide one or multiple action IDs to generate empty action method(s) in the controller. Separate multiple action IDs with commas or spaces.
-                Action IDs should be in lower case. For example:
-                <ul>
-                    <li><code>index</code> generates <code>actionIndex()</code></li>
-                    <li><code>create-order</code> generates <code>actionCreateOrder()</code></li>
-                </ul>',
-            'baseClass' => 'This is the class that the new controller class will extend from. Please make sure the class exists and can be autoloaded.',
+            'modelClass' => Yii::t('app','这是与CRUD将在其上构建的表相关联的ActiveRecord类。你应该提供一个完全限定的类名，例如，<code>app\models\Post</code>。'),
+            'controllerClass' => Yii::t('app','这是要生成的控制器类的名称。你应该提供一个完全限定的命名空间类(例如<code>app\controllers\PostController</code>)，并且类名应该在CamelCase中以单词<code>Controller</code>结尾。确保类使用的名称空间与应用程序的controllerNamespace属性指定的名称空间相同。'),
+            'actions' => Yii::t('app','提供一个或多个动作id在控制器中生成空的动作方法。用逗号或空格分隔多个动作id。动作id应该小写。例如:<ul><li><code>index</code>生成<code>actionIndex()</code></li><li><code>create-order</code> generated <code>actionCreateOrder()</code></li></ul >'),
+            'baseClass' => Yii::t('app','这是新控制器类将从其扩展的类。请确保该类存在并且可以自动加载'),
         ];
     }
 

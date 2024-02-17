@@ -2,12 +2,14 @@
 
 namespace backend\controllers;
 
-use yiiframe\addonhelper\AddonHelper;
+use yiiframe\plugs\common\AddonHelper;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use backend\forms\LoginForm;
+use backend\forms\SignUpForm;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class SiteController
@@ -33,7 +35,7 @@ class SiteController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'captcha'],
+                        'actions' => ['login','register','register-protocol', 'error', 'captcha'],
                         'allow' => true,
                     ],
                     [
@@ -101,7 +103,48 @@ class SiteController extends Controller
             ]);
         }
     }
+    /**
+     * 注册
+     *
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionRegister()
+    {
+        // 判断开放注册
+        if (empty(Yii::$app->debris->addonConfig('Member')['member_register_is_open'])){
+            throw new NotFoundHttpException('未开放注册，请稍后再试');
+        }
 
+        $model = new SignUpForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($member = $model->register()) {
+                return $this->redirect(['login']);
+            }
+
+            return $this->redirect(['register']);
+        }
+
+        return $this->render($this->action->id, [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * 注册协议
+     *
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionRegisterProtocol()
+    {
+        // 判断开放注册
+        if (empty(Yii::$app->debris->addonConfig('Member')['member_register_is_open'])){
+            throw new NotFoundHttpException('找不到页面');
+        }
+
+        return $this->render($this->action->id, []);
+    }
     /**
      * @return \yii\web\Response
      * @throws \yii\base\InvalidConfigException
@@ -111,5 +154,12 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+    //关闭站点
+    public function actionOffline()
+    {
+        return $this->renderPartial('offline', [
+            'title' => '系统维护中...'
+        ]);
     }
 }

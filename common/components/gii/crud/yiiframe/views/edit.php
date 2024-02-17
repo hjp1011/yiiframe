@@ -24,7 +24,7 @@ use kartik\select2\Select2;
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
 /* @var $form yii\widgets\ActiveForm */
 
-$this->title = <?= $generator->generateString(Inflector::camel2words('Edit')) ?>;
+$this->title = <?= $generator->generateString(Inflector::camel2words('编辑')) ?>;
 $this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass)))) ?>, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -48,52 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 if (!empty($generator->formFields)) {
     foreach ($generator->formFields as $attribute) {
-        if($attribute=='cate_id')
-            echo "                    <?= \$form->field(\$model, 'cate_id')->widget(Select2::class, [
-                        'data' => \$cates,
-                        'options' => ['placeholder' => Yii::t('app','请选择')],
-                        'pluginOptions' => [
-                            'allowClear' => true
-                        ],
-                    ]);?>\n";
-        elseif($attribute=='covers')
-            echo "                    <?= \$form->field(\$model, 'covers')->widget(addons\Webuploader\common\widgets\webuploader\Files::class, [
-                            'config' => [
-                                'pick' => [
-                                    'multiple' => true,
-                                ],
-                            ]
-                        ]); 
-                    ?>\n";
-        elseif($attribute=='begin_date')
-            echo "                    <?= \$form->field(\$model, 'begin_date')->widget('kartik\date\DatePicker', [
-                        'language' => 'zh-CN',
-                        'layout' => '{picker}{input}',
-                        'pluginOptions' => [
-                            'format' => 'yyyy-mm-dd',
-                            'todayHighlight' => true,// 今日高亮
-                            'autoclose' => true,// 选择后自动关闭
-                            'todayBtn' => true,// 今日按钮显示
-                        ],
-                        'options' => [
-                            'class' => 'form-control no_bor',
-                        ]
-                    ]); ?>\n";
-        elseif($attribute=='end_date')
-            echo "                    <?= \$form->field(\$model, 'end_date')->widget('kartik\date\DatePicker', [
-                        'language' => 'zh-CN',
-                        'layout' => '{picker}{input}',
-                        'pluginOptions' => [
-                            'format' => 'yyyy-mm-dd',
-                            'todayHighlight' => true,// 今日高亮
-                            'autoclose' => true,// 选择后自动关闭
-                            'todayBtn' => true,// 今日按钮显示
-                        ],
-                        'options' => [
-                            'class' => 'form-control no_bor',
-                        ]
-                    ]); ?>\n";
-        elseif($attribute=='status')
+        if($attribute=='status')
             echo "                    <?= \$form->field(\$model, 'status')->radioList(\common\\enums\StatusEnum::getMap()) ?>\n";
         else
             echo "                    <?= " . $generator->generateActiveField($attribute) . " ?>\n";
@@ -108,7 +63,7 @@ if (!empty($generator->formFields)) {
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12 text-center">
-                        <button class="btn btn-primary" type="submit"><?= "<?=" ?>Yii::t('app','Save');?></button>
+                        <button class="btn btn-primary" type="submit"><?= "<?=" ?>Yii::t('app','保存');?></button>
                         <span class="btn btn-white" onclick="history.go(-1)"><?= "<?=" ?>Yii::t('app', '返回');?></span>
                     </div>
                 </div>

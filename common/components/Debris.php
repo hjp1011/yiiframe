@@ -6,7 +6,7 @@ use Yii;
 use yii\web\NotFoundHttpException;
 use yii\web\UnprocessableEntityHttpException;
 use common\enums\AppEnum;
-use yiiframe\addonhelper\AddonHelper;
+use yiiframe\plugs\common\AddonHelper;
 
 /**
  * Class Debris

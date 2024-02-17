@@ -11,7 +11,7 @@ use common\enums\StatusEnum;
         <small><?= \yii\helpers\HtmlPurifier::process(\Yii::t('app',$row['remark'])) ?></small>
     <?php } ?>
     <?php
-    if (\yiiframe\addonhelper\AddonHelper::isInstall('Ueditor'))
+    if (\yiiframe\plugs\common\AddonHelper::isInstall('Ueditor'))
         echo \addons\Ueditor\common\widgets\ueditor\UEditor::widget([
             'id' => "config[" . $row['name'] . "]",
             'attribute' => $row['name'],

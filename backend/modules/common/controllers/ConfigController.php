@@ -111,9 +111,9 @@ class ConfigController extends BaseController
         if ($request->isAjax) {
             $config = $request->post('config', []);
             Yii::$app->services->config->updateAll(Yii::$app->id, $config);
-            return ResultHelper::json(200, "修改成功");
+            return ResultHelper::json(200, Yii::t('app','修改成功'));
         }
 
-        throw new NotFoundHttpException('请求出错!');
+        throw new NotFoundHttpException(Yii::t('app','请求出错'));
     }
 }

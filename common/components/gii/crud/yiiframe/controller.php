@@ -32,7 +32,6 @@ use common\models\base\SearchModel;
 use common\controllers\BaseController;
 use common\helpers\ExcelHelper;
 use <?= ltrim($generator->modelClass, '\\') ?>;
-use <?= ltrim($generator->modelClass.'Cate', '\\') ?>;
 
 
 /**
@@ -87,7 +86,6 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
-            'cates' => <?= $modelClass ?>Cate::getDropDown(),
         ]);
     }
     /**
@@ -107,7 +105,6 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         }
         return $this->render('create', [
             'model' => $model,
-            'cates' =>  <?= $modelClass ?>Cate::getDropDown(),
         ]);
     }
     /**
@@ -127,7 +124,6 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         }
         return $this->render('edit', [
             'model' => $model,
-            'cates' => <?= $modelClass ?>Cate::getDropDown(),
         ]);
     }
 
@@ -141,9 +137,8 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     {
         $header = [
             ['编辑', 'id'],
-            ['分类', 'cate_id', 'selectd', <?= $modelClass ?>Cate::getDropDown()],
+            ['标题', 'title'],
             ['日期', 'created_at', 'date', 'Y-m-d'],
-
         ];
         $list = $this->modelClass::find()->select('*')
         ->andWhere(['merchant_id'=>\Yii::$app->user->identity->merchant_id])->with('member')->all();

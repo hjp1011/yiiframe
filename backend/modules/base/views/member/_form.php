@@ -4,7 +4,7 @@ use yii\widgets\ActiveForm;
 use common\helpers\Url;
 use common\enums\GenderEnum;
 use common\helpers\Html;
-use yiiframe\addonhelper\AddonHelper;
+use yiiframe\plugs\common\AddonHelper;
 
 ?>
 
@@ -15,7 +15,7 @@ use yiiframe\addonhelper\AddonHelper;
         <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-black"
-                 style="background: url('<?= Yii::getAlias('@web'); ?>/resources/img/photo1.png') center center;">
+                 style="background: url('<?= Yii::getAlias('@web'); ?>/resources/img/photo1.jpg') center center;">
                 <h3 class="widget-user-username"><?= $model->username; ?></h3>
                 <h5 class="widget-user-desc"><?=Yii::t('app', '最后登录时间')?>：<?= Yii::$app->formatter->asDatetime($model->last_time) ?></h5>
                 <h5><?=Yii::t('app', '最后登录IP')?>：<?= $model->last_ip ?></h5>

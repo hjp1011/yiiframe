@@ -31,7 +31,7 @@ use common\widgets\menu\MenuLeftWidget;
                 <li class="header" data-rel="external"><?=Yii::t('app','相关链接');?></li>
                 <li><a href="http://www.yiiframe.com" target="_blank"><i class="fa fa-bookmark text-red"></i> <span><?=Yii::t('app','官网');?></span></a></li>
                 <li><a href="http://doc.yiiframe.com" target="_blank"><i class="fa fa-list text-yellow"></i> <span><?=Yii::t('app','文档');?></span></a></li>
-                <li><a href="#" target="_blank"><i class="fa fa-qq text-aqua"></i> <span>QQ群1107210028</span></a></li>
+                <li><a href="#" target="_blank"><i class="fa fa-qq text-aqua"></i> <span>21931118</span></a></li>
             <?php } ?>
         </ul>
     </section>

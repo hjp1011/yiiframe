@@ -121,6 +121,36 @@ class Html extends BaseHtml
         return self::a(Yii::t('app',$content), $url, $options);
     }
     /**
+     * 上传
+     *
+     * @param $url
+     * @param array $options
+     * @return string
+     */
+    public static function upload(array $url,$options = [], $content = '上传')
+    {
+        $options = ArrayHelper::merge([
+            'class' => 'btn btn-primary btn-xs',
+        ], $options);
+        $content = '<i class="icon ion-plus"></i> ' . Yii::t('app',$content);
+        return self::a(Yii::t('app',$content), $url, $options);
+    }
+    /**
+     * 下载
+     *
+     * @param $url
+     * @param array $options
+     * @return string
+     */
+    public static function download(array $url,$options = [], $content = '下载')
+    {
+        $options = ArrayHelper::merge([
+            'class' => 'btn btn-primary btn-xs',
+        ], $options);
+        $content = '<i class="icon ion-plus"></i> ' . Yii::t('app',$content);
+        return self::a(Yii::t('app',$content), $url, $options);
+    }
+    /**
      * 分类
      *
      * @param $url
@@ -183,7 +213,7 @@ class Html extends BaseHtml
                 [
                     'class' => "btn btn-success btn-sm",
                     'data-toggle' => 'tooltip',
-                    'data-original-title' => '启用',
+                    'data-original-title' => Yii::t('app','启用'),
                     'onclick' => "rfStatus(this)"
                 ],
                 $options
@@ -192,7 +222,7 @@ class Html extends BaseHtml
                 [
                     'class' => "btn btn-default btn-sm",
                     'data-toggle' => 'tooltip',
-                    'data-original-title' => '禁用',
+                    'data-original-title' => Yii::t('app','禁用'),
                     'onclick' => "rfStatus(this)"
                 ],
                 $options
@@ -201,7 +231,50 @@ class Html extends BaseHtml
 
         return $listBut[$status] ?? '';
     }
+    /**
+     * 审核标签
+     *
+     * @param int $status
+     * @return mixed
+     */
+    public static function audit($status = 1, $options = [])
+    {
+        if (!self::beforVerify('ajax-update')) {
+            return '';
+        }
 
+        $listBut = [
+            StatusEnum::DISABLED => self::tag('span', Yii::t('app','已拒绝'), array_merge(
+                [
+                    'class' => "btn btn-success btn-sm",
+                    'data-toggle' => 'tooltip',
+                    'data-original-title' => Yii::t('app','已拒绝'),
+                    'onclick' => "rfStatus(this)"
+                ],
+                $options
+            )),
+            StatusEnum::ENABLED => self::tag('span', Yii::t('app','已审核'), array_merge(
+                [
+                    'class' => "btn btn-default btn-sm",
+                    'data-toggle' => 'tooltip',
+                    'data-original-title' => Yii::t('app','已审核'),
+                    'onclick' => "rfStatus(this)"
+                ],
+                $options
+            )),
+            StatusEnum::DELETE => self::tag('span', Yii::t('app','待审核'), array_merge(
+                [
+                    'class' => "btn btn-default btn-sm",
+                    'data-toggle' => 'tooltip',
+                    'data-original-title' => Yii::t('app','待审核'),
+                    'onclick' => "rfStatus(this)"
+                ],
+                $options
+            )),
+        ];
+
+        return $listBut[$status] ?? '';
+    }
     /**
      * @param string $text
      * @param null $url

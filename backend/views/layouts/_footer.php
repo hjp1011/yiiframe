@@ -13,7 +13,7 @@ use common\helpers\StringHelper;
         <div class="modal-content">
             <div class="modal-body">
                 <?= Html::img('@web/resources/img/loading.gif', ['class' => 'loading']) ?>
-                <span>加载中... </span>
+                <span><?=Yii::t('app','加载中')?>... </span>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@ use common\helpers\StringHelper;
         <div class="modal-content">
             <div class="modal-body">
                 <?= Html::img('@web/resources/img/loading.gif', ['class' => 'loading']) ?>
-                <span>加载中... </span>
+                <span><?=Yii::t('app','加载中')?>... </span>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@ use common\helpers\StringHelper;
         <div class="modal-content">
             <div class="modal-body">
                 <?= Html::img('@web/resources/img/loading.gif', ['class' => 'loading']) ?>
-                <span>加载中... </span>
+                <span><?=Yii::t('app','加载中')?>... </span>
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@ use common\helpers\StringHelper;
 <div id="rfModalBody" class="hide">
     <div class="modal-body">
         <?= Html::img('@web/resources/img/loading.gif', ['class' => 'loading']) ?>
-        <span>加载中... </span>
+        <span><?=Yii::t('app','加载中')?>... </span>
     </div>
 </div>
 
@@ -56,10 +56,10 @@ $page = (int)Yii::$app->request->get('page', 1);
 $perPage = (int)Yii::$app->request->get('per-page', 10);
 
 $perPageSelect = Html::dropDownList('rf-per-page', $perPage, [
-    10 => '10条/页',
-    15 => '15条/页',
-    25 => '25条/页',
-    40 => '40条/页',
+    20 => '20'.Yii::t('app','条/页'),
+    30 => '30'.Yii::t('app','条/页'),
+    40 => '40'.Yii::t('app','条/页'),
+    50 => '50'.Yii::t('app','条/页'),
 ], [
     'class' => 'form-control rf-per-page',
     'style' => 'width:100px'
@@ -70,7 +70,7 @@ $perPageSelect = StringHelper::replace("\n", '', $perPageSelect);
 $script = <<<JS
 
     $(".pagination").append('<li style="float: left;margin-left: 10px;">$perPageSelect</li>');
-    $(".pagination").append('<li>&nbsp;&nbsp;前往&nbsp;<input id="invalue" type="text" class="pane rf-page-skip-input"/>&nbsp;页</li>');
+    //$(".pagination").append('<li>&nbsp;&nbsp;前往&nbsp;<input id="invalue" type="text" class="pane rf-page-skip-input"/>&nbsp;页</li>');
 
     // 跳转页码
     $('.rf-page-skip-input').blur(function() {
@@ -103,10 +103,10 @@ $this->registerJs($script);
 
 <script>
     // 小模拟框清除
-    $('#ajaxModalLg').on('hide.bs.modal', function (e) {
+    $('#ajaxModal').on('hide.bs.modal', function (e) {
         if (e.target == this) {
             $(this).removeData("bs.modal");
-            $('#ajaxModalLg').find('.modal-content').html($('#rfModalBody').html());
+            $('#ajaxModal').find('.modal-content').html($('#rfModalBody').html());
         }
     });
     // 大模拟框清除
@@ -125,16 +125,16 @@ $this->registerJs($script);
     });
 
     // 小模拟框加载完成
-    $('#ajaxModalLg').on('shown.bs.modal', function (e) {
-        autoFontColor()
+    $('#ajaxModal').on('shown.bs.modal', function (e) {
+        autoFontColor();
     });
     // 大模拟框加载完成
     $('#ajaxModalLg').on('shown.bs.modal', function (e) {
-        autoFontColor()
+        autoFontColor();
     });
     // 最模拟框加载完成
     $('#ajaxModalLgMax').on('shown.bs.modal', function (e) {
-        autoFontColor()
+        autoFontColor();
     });
 
     // 启用状态 status 1:启用;0禁用;
@@ -167,13 +167,13 @@ $this->registerJs($script);
                     if (self.hasClass("btn-success")) {
                         self.removeClass("btn-success").addClass("btn-default");
                         self.attr("data-toggle", 'tooltip');
-                        self.attr("data-original-title", '禁用');
-                        self.text('禁用');
+                        self.attr("data-original-title", "<?=Yii::t('app','禁用')?>");
+                        self.text("<?=Yii::t('app','禁用')?>");
                     } else {
                         self.removeClass("btn-default").addClass("btn-success");
                         self.attr("data-toggle", 'tooltip');
-                        self.attr("data-original-title", '启用');
-                        self.text('启用');
+                        self.attr("data-original-title", "<?=Yii::t('app','启用')?>");
+                        self.text("<?=Yii::t('app','启用')?>");
                     }
                 } else {
                     rfAffirm(data.message);
@@ -196,7 +196,7 @@ $this->registerJs($script);
 
         var sort = $(obj).val();
         if (isNaN(sort)) {
-            rfAffirm('排序只能为数字');
+            rfAffirm("<?=Yii::t('app','排序只能为数字')?>","<?=Yii::t('app','一个基于Yii2的安全、高效的开发框架')?>","<?=Yii::t('app','确认')?>");
             return false;
         } else {
             $.ajax({
@@ -209,7 +209,7 @@ $this->registerJs($script);
                 },
                 success: function (data) {
                     if (parseInt(data.code) !== 200) {
-                        rfAffirm(data.message);
+                        rfAffirm(data.message,"<?=Yii::t('app','一个基于Yii2的安全、高效的开发框架')?>","<?=Yii::t('app','确认')?>");
                     }
                 }
             });

@@ -115,9 +115,10 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
             data: values,
             success: function (data) {
                 if (data.code === 200) {
-                    rfAffirm(data.message);
+                    rfAffirm(data.message,"<?=Yii::t('app','一个基于Yii2的安全、高效的开发框架')?>","<?=Yii::t('app','确认')?>");
                 } else {
-                    rfAffirm(data.message);
+                    rfAffirm(data.message,"<?=Yii::t('app','一个基于Yii2的安全、高效的开发框架')?>","<?=Yii::t('app','确认')?>");
+                    
                 }
             }
         });

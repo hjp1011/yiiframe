@@ -11,7 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'defaultRoute' => 'main', // 默认控制器
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log','plugs'],
     'modules' => [
         /** ------ 公用模块 ------ **/
         'common' => [
@@ -21,6 +21,9 @@ return [
         'base' => [
             'class' => 'backend\modules\base\Module',
         ],
+        'plugs' => [
+            'class' => 'yiiframe\plugs\Module',
+        ]
     ],
     'components' => [
 

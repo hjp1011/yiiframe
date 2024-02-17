@@ -4,6 +4,7 @@ namespace common\widgets\menu;
 
 use Yii;
 use yii\base\Widget;
+use yiiframe\plugs\services\AddonsService;
 
 /**
  * 左边菜单
@@ -21,7 +22,7 @@ class MenuLeftWidget extends Widget
     {
         return $this->render('menu-left', [
             'menus' => Yii::$app->services->menu->getOnAuthList(),
-            'addonsMenus' => Yii::$app->services->addons->getMenus(),
+            'addonsMenus' => AddonsService::getMenus(),
         ]);
     }
 }

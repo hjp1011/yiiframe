@@ -7,7 +7,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\UnauthorizedHttpException;
 use common\helpers\Auth;
-use yiiframe\addonhelper\AddonHelper;
+use yiiframe\plugs\common\AddonHelper;
 use common\traits\BaseAction;
 use common\enums\AppEnum;
 use addons\Monitoring\common\behaviors\ActionLogBehavior;
