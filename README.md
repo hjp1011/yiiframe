@@ -1,121 +1,126 @@
 ## YiiFrame
 
-基于Yii2的重量级二次开发框架
+### 简介
 
-### 前言
+YiiFrame 是一款基于 Yii2 和 Bootstrap 的快速后台开发框架，专注于构建各种 PHP 应用程序，包括 APP、小程序、H5、网站等。其插件化机制和模块化设计使其成为适用于大型应用系统开发的理想选择，例如门户网站、社区网站、CMS、CRM、ERP、OA 和电子商务项目。
 
-YiiFrame 是一个基于Yii2+Bootstrap的快速后台开发框架，可完美运行在linux、mac和windows环境下，用于开发各种基于PHP构建的应用程序，包括APP、小程序、H5、网站等。 基于插件的框架结构特别适合开发大型应用系统的后端和提供接口服务，如门户网站、社区网站、CMS、CRM、ERP、OA、电子商务等项目。
+### 特色功能
 
-### 特色
+-   **可扩展性与插件化机制：** YiiFrame 提供极强的可扩展性，支持应用化、模块化、插件化开发，内置多语言支持，包括简体中文、繁体、英语、日语等。
+    
+-   **RBAC 权限控制：** 强大的 RBAC 权限管理，支持无限父子级权限分组，可自由分配子级权限，同时对按钮、链接、自定义内容和插件进行细粒度权限控制。
+    
+-   **多入口模式：** 提供多入口模式，包括后台、企业端、PC 前端、手机端、控制台、内部 API、外部接口等，以满足不同业务场景和设备需求。
+    
+-   **第三方登录和支付：** 支持第三方登录，如 QQ、微信、微博、GitHub 等，同时提供对微信支付、支付宝支付、银联支付等的支持。
+    
+-   **RESTful API：** 支持 RESTful API，适用于前后端分离和 App 接口开发，提供便捷的接口开发体验。
+    
+-   **丰富的表单控件和组件：** 提供多样化的表单控件和组件，如时间选择器、日期范围选择、颜色选择器、地图经纬度选择器等，以及二维码生成、Curl、IP 地址转地区等实用组件。
+    
+-   **一键生成 CURD 和 API 接口文档：** 提供 CURD 代码生成工具，简化业务开发流程，同时支持一键生成 API 接口文档。
+    
+-   **在线更新和插件市场：** 支持在线更新功能，可一键安装更新到最新版本，同时提供丰富的应用插件市场。
 
-- 极强的可扩展性，应用化，模块化，插件化机制敏捷开发，支持国际化，内置简体中文、繁体、英语、日语等语言包。
-- 强大的应用插件扩展功能，在线安装卸载升级应用插件；微核架构，良好的功能延伸性，功能之间是隔离，可定制性高，可以渐进式地开发，逐步增加功能，安装和卸载不会对原来的系统产生影响,强大的功能完全满足各阶段的需求，支持用户多端访问(后台、微信、Api、前台等)。
-- 完善的 RBAC 权限控制管理、无限父子级权限分组、可自由分配子级权限，且按钮/链接/自定义内容/插件等都可加入权限控制。
-- 精简的后台管理系统，不会在上面开发过多的业务内容，满足绝大多数的系统二次开发。
-- 多入口模式，多入口分为 Backend (后台)、Merchant (企业端)、Frontend (PC前端)、Html5 (手机端)、Console (控制台)、Api (对内接口)、OAuth2 Server (对外接口)、MerApi (企业接口)、Storage (静态资源)，不同的业务，不同的设备，进入不同的入口。
-- 支持微信公众号和企业微信，大幅度的提升了微信开发效率。
-- 支持第三方登录，目前有 QQ、微信、微博、GitHub 等等。
-- 支持第三方支付，目前有微信支付、支付宝支付、银联支付，二次封装为网关多个支付一个入口一个出口。
-- 支持 RESTful API，支持前后端分离接口开发和 App 接口开发，可直接上手开发业务。
-- 支持本地存储，无缝整合第三方云存储，支持腾讯 COS、阿里云 OSS、七牛云存储，且增加其他第三方存储也非常方便。
-- 全面监控系统报错，报错日志写入数据库，方便定位错误信息。
-- 快速高效的 Servises (服务层)，遵循 Yii2 的懒加载方式，只初始化使用到的组件服务。
-- 丰富的表单控件(时间、日期、时间日期、日期范围选择、颜色选择器、省市区三级联动、省市区勾选、单图上传、多图上传、单文件上传、多文件上传、百度编辑器、百度图表、多文本编辑框、地图经纬度选择器、图片裁剪上传、TreeGrid、JsTree、Markdown 编辑器)和组件(二维码生成、Curl、IP地址转地区)，快速开发，不必再为基础组件而担忧。
-- 一键生成 CURD ,无需编写代码，只需创建表设置路径就能出现一个完善的 CURD ,其中所需表单控件也是勾选即可直接生成。
-- 一键生成API接口文档
-- 完善的文档和辅助类，方便二次开发与集成。
-- 支持在线更新功能，可以一键安装更新到最新版本。
-- 丰富的应用插件市场，基础插件应有尽有。
-
-### 应用架构流程
-
-![image](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/app-flow.png)
 
 ### 系统快照
 
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/YiiFrame-%E7%B3%BB%E7%BB%9F%E9%A6%96%E9%A1%B5.png "系统首页")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172234475.png)
 
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/YiiFrame-%E7%AB%99%E7%82%B9%E8%AE%BE%E7%BD%AE.png "站点设置")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172255490.png)
 
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/YiiFrame-%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86.png "配置管理")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172257429.png)
 
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/YiiFrame-%E5%BA%94%E7%94%A8%E7%AE%A1%E7%90%86.png "插件中心")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172257236.png)
 
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/YiiFrame-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.png "权限管理")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172259120.png)
+
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172259403.png)
+
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172303741.png)
+
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172303350.png)
+
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181122594.png)
+
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172304700.png)
+
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172304147.png)
+
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172305326.png)
+
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172308194.png)
 
 ### 案例截图
 
-安装插件
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6.png "屏幕截图.png")
-
-已安装插件
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E5%B7%B2%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6.png "屏幕截图.png")
-
 工作流列表
-![](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%88%97%E8%A1%A8.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181207185.png)
 
 流程状态
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E6%B5%81%E7%A8%8B%E7%8A%B6%E6%80%81.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181207620.png)
 
 配置审核人员
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E9%85%8D%E7%BD%AE%E5%AE%A1%E6%A0%B8%E4%BA%BA%E5%91%98.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181208324.png)
 
 工作流转
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E5%B7%A5%E4%BD%9C%E6%B5%81%E8%BD%AC.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181209685.png)
 
 新增流程节点
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E8%8A%82%E7%82%B9.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181210444.png)
 
 待办工作
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E5%BE%85%E5%8A%9E%E5%B7%A5%E4%BD%9C.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181210838.png)
 
 已办工作
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E5%B7%B2%E5%8A%9E%E5%B7%A5%E4%BD%9C.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181210617.png)
 
 审核工作
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E5%AE%A1%E6%A0%B8%E5%B7%A5%E4%BD%9C.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181210531.png)
 
 创建申请
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E5%88%9B%E5%BB%BA%E7%94%B3%E8%AF%B7.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181211856.png)
 
 查看进度
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E6%9F%A5%E7%9C%8B%E8%BF%9B%E5%BA%A6.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181211336.png)
 
 班次管理
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E7%8F%AD%E6%AC%A1%E7%AE%A1%E7%90%86.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181212795.png)
 
 排班管理
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E6%8E%92%E7%8F%AD%E7%AE%A1%E7%90%86.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181212041.png)
 
 我的排班
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E6%88%91%E7%9A%84%E6%8E%92%E7%8F%AD.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181212048.png)
 
 签到列表
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E7%AD%BE%E5%88%B0%E5%88%97%E8%A1%A8.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181212558.png)
 
 新建打卡
-![输入图片说明](https://wephp-unioa.oss-cn-shenzhen.aliyuncs.com/%E7%AD%BE%E5%88%B0%E6%89%93%E5%8D%A1.png "屏幕截图.png")
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181213475.png)
+
 
 ### 开始之前
 
-- 具备 PHP 基础知识
-- 具备 Yii2 基础开发知识
-- 具备 开发环境的搭建技能
-- 如果要做小程序或微信开发需要明白微信接口的组成，自有服务器、微信服务器、公众号（还有其它各种号）、测试号、以及通信原理（交互过程）
-- 如果需要做接口开发(RESTful API)了解基本的 HTTP 协议，Header 头、请求方式（`GET\POST\PUT\PATCH\DELETE`）等
-- 能查看日志和 Debug 技能
-- 使用前请仔细阅读文档，一般常见的报错可以自行先解决，解决不了再来提问
+在使用 YiiFrame 框架之前，请确保你具备以下基础知识和技能：
 
+-   PHP 基础知识
+-   Yii2 基础开发知识
+-   开发环境搭建技能
+-   微信接口原理和组成（如果涉及微信开发）
+-   HTTP 协议、Header 头、请求方式等基础知识
+-   日志查看和 Debug 技能
 
-### 官网
+详细的使用方法和开发指南请参阅[官方文档](http://doc.yiiframe.com/)。
 
-https://www.yiiframe.com
+### 官方网站
+
+访问 [YiiFrame 官网](https://www.yiiframe.com/) 获取更多信息。
 
 ### 文档
 
-http://doc.yiiframe.com
+查阅 [YiiFrame 文档](http://doc.yiiframe.com/) 以获取详细的框架使用说明和开发指南。
 
-###框架下载
+### 框架下载
 
 github：https://github.com/hjp1011/yiiframe
 
@@ -129,15 +134,12 @@ https://www.yiiframe.com/category/addons/
 
 ### 问题反馈
 
-在使用中有任何问题，欢迎反馈给我，可以用以下联系方式跟我交流
+在使用过程中遇到问题或有任何建议，欢迎通过以下方式联系我们：
 
-问答社区：https://www.yiiframe.com/question/
-
-Github：https://github.com/hjp1011/yiiframe/issues
-
-Gitee：https://gitee.com/hjp1011/yiiframe/issues
-
-QQ：21931118
+-   [问答社区](https://www.yiiframe.com/question/)
+-   [GitHub Issues](https://github.com/hjp1011/yiiframe/issues)
+-   [Gitee Issues](https://gitee.com/hjp1011/yiiframe/issues)
+-   QQ：21931118
 
 ### 特别鸣谢
 
@@ -156,8 +158,6 @@ Rageframe：http://www.rageframe.com
 
 ### 版权信息
 
-YiiFrame 遵循 Apache2 开源协议发布，并提供免费试用，请勿用于商业用途，如果您想将此套系统用于商业用途，您可以联系我们，以取得商业授权。
+YiiFrame 遵循 Apache2 开源协议发布，并提供免费试用。如需商业用途，请联系获取商业授权。
 
-本项目包含的第三方源码和二进制文件之版权信息另行标注。
-
-版权所有Copyright © 2021-2026 by YiiFrame ([www.yiiframe.com](https://www.yiiframe.com)) All rights reserved。
+© 2021-2026 YiiFrame ([www.yiiframe.com](https://www.yiiframe.com/))。保留所有权利。
