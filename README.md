@@ -41,56 +41,56 @@ YiiFrame 是一款基于 Yii2 和 Bootstrap 的快速后台开发框架，专注
 
 ![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172303350.png)
 
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181122594.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181220092.png)
 
 ![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172304700.png)
 
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172304147.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181220214.png)
 
 ![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172305326.png)
 
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402172308194.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181221120.png)
 
 ### 案例截图
 
 工作流列表
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181207185.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181222928.png)
 
 流程状态
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181207620.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181223228.png)
 
 配置审核人员
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181208324.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181224493.png)
 
 工作流转
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181209685.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181224716.png)
 
 新增流程节点
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181210444.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181224209.png)
 
 待办工作
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181210838.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181225339.png)
 
 已办工作
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181210617.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181225049.png)
 
 审核工作
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181210531.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181225988.png)
 
 创建申请
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181211856.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181226229.png)
 
 查看进度
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181211336.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181226380.png)
 
 班次管理
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181212795.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181227701.png)
 
 排班管理
 ![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181212041.png)
 
 我的排班
-![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181212048.png)
+![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181227491.png)
 
 签到列表
 ![](https://wephp-lskypro.oss-cn-shenzhen.aliyuncs.com/notes/202402181212558.png)
