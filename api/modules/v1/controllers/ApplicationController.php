@@ -68,7 +68,7 @@ class ApplicationController extends OnAuthController
                     $models[] = $addons[$i];
         }
         // 创建分类数组
-        $groups = array_keys(\common\enums\GroupEnum::getMap());
+        $groups = array_keys(\yiiframe\plugs\enums\GroupEnum::getMap());
         $addons = [];
         foreach ($groups as $group) {
             !isset($addons[$group]) && $addons[$group] = [];
@@ -86,7 +86,7 @@ class ApplicationController extends OnAuthController
         $menu = [];
         $i = 0;
         foreach ($addons as $key => $addon) {
-            $menu[$i]['title'] = \common\enums\GroupEnum::getMap()[$key]['title'];
+            $menu[$i]['title'] = \yiiframe\plugs\enums\GroupEnum::getMap()[$key]['title'];
             if ($key == 'knowledge') {
                 $cates = Cate::find()->select(['id', 'title', 'icon'])->where(['merchant_id' => Yii::$app->user->identity->merchant_id])->orderBy('sort')->asArray()->all();
                 foreach ($cates as &$cate) {
@@ -130,7 +130,7 @@ class ApplicationController extends OnAuthController
                 $models[] = $addons[$i];
         }
         // 创建分类数组
-        $groups = array_keys(\common\enums\GroupEnum::getMap());
+        $groups = array_keys(\yiiframe\plugs\enums\GroupEnum::getMap());
         $addons = [];
         foreach ($groups as $group) {
             !isset($addons[$group]) && $addons[$group] = [];
@@ -148,7 +148,7 @@ class ApplicationController extends OnAuthController
         $menu = [];
         $i = 0;
         foreach ($addons as $key => $addon) {
-            $menu[$i]['title'] = \common\enums\GroupEnum::getMap()[$key]['title'];
+            $menu[$i]['title'] = \yiiframe\plugs\enums\GroupEnum::getMap()[$key]['title'];
 
             foreach ($addon as &$sub) {
                 $sub['url'] = '/pages/application/' . $sub['name'] . '/index';
