@@ -52,20 +52,19 @@ class ApplicationController extends OnAuthController
             ->all();
         //已安装模块
         $models = [];
-//        $lists = \addons\Merchants\common\models\Addons::find()
-//            ->select(['title', 'name', 'group'])
-//            ->where(['merchant_id' => Yii::$app->user->identity->merchant_id??0])
-//            ->asArray()
-//            ->all();
-
-        foreach ($addons as $i => &$model) {
-                //已授权模块
-                $items = AuthItemChild::find()
-                    ->select('*')
-                    ->where(['addons_name'=>$model['name'],'role_id'=>Yii::$app->user->identity->role_id])
-                    ->one();
-                if ($items)
-                    $models[] = $addons[$i];
+        if(Yii::$app->user->identity){//已登陆
+            if (Yii::$app->user->identity->role_id == Yii::$app->params['adminAccount'])//超级管理员
+                $models = $addons;
+            else
+            foreach ($addons as $i => &$model) {
+                    //已授权模块
+                    $items = AuthItemChild::find()
+                        ->select('*')
+                        ->where(['addons_name'=>$model['name'],'role_id'=>Yii::$app->user->identity->role_id])
+                        ->one();
+                    if ($items)
+                        $models[] = $addons[$i];
+            }
         }
         // 创建分类数组
         $groups = array_keys(\yiiframe\plugs\enums\GroupEnum::getMap());
@@ -106,6 +105,7 @@ class ApplicationController extends OnAuthController
             $i++;
         }
         return $menu;
+
     }
 
     public function actionPersonal()

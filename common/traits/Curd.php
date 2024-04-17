@@ -8,6 +8,7 @@ use yii\base\InvalidConfigException;
 use common\helpers\ResultHelper;
 use common\enums\StatusEnum;
 use common\helpers\ArrayHelper;
+use common\models\base\SearchModel;
 
 /**
  * Trait Curd
@@ -34,20 +35,39 @@ trait Curd
      */
     public function actionIndex()
     {
-        $data = $this->modelClass::find()
-            ->where(['>=', 'status', StatusEnum::DISABLED]);
-        $pages = new Pagination(['totalCount' => $data->count(), 'pageSize' => $this->pageSize]);
-        $models = $data->offset($pages->offset)
-            ->orderBy('id desc')
-            ->limit($pages->limit)
-            ->all();
-
-        return $this->render($this->action->id, [
-            'models' => $models,
-            'pages' => $pages
+        $searchModel = new SearchModel([
+            'model' => $this->modelClass,
+            'scenario' => 'default',
+            'relations' => ['member' => ['realname']], 
+            'partialMatchAttributes' => ['title', 'member.realname'], 
+            'defaultOrder' => [
+                'id' => SORT_DESC
+            ],
+            'pageSize' => $this->pageSize
+        ]);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andWhere([$this->modelClass::tableName().'.status' => StatusEnum::ENABLED]);
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
-
+    /**
+     * 编辑/创建
+     *
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $id = Yii::$app->request->get('id', null);
+        $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->referrer();
+        }
+        return $this->render($this->action->id, [
+            'model' => $model,
+        ]);
+    }
     /**
      * 编辑/创建
      *
@@ -102,7 +122,24 @@ trait Curd
 
         return $this->message("删除失败", $this->redirect(Yii::$app->request->referrer), 'error');
     }
+    /**
+     * 批量删除 - 回收站
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function actionDeleteAll()
+    {
+        $ids = Yii::$app->request->post('ids', []);
+        if (empty($ids)) {
+            return ResultHelper::json(422, '请至少选择一条记录');
+        }
 
+        $this->modelClass::updateAll(['status' => StatusEnum::DISABLED],
+            ['and', ['in', 'id', $ids], ]);
+
+        return ResultHelper::json(200, '批量操作成功');
+    }
     /**
      * ajax更新排序/状态
      *

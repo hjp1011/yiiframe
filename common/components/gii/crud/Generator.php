@@ -26,6 +26,7 @@ class Generator extends \yiiframe\gii\generators\crud\Generator
             'time' => Yii::t('app','时间'),
             'date' => Yii::t('app','日期'),
             'datetime' => Yii::t('app','日期时间'),
+            'color' => Yii::t('app','颜色'),
             'dropDownList' => Yii::t('app','下拉框'),
             'multipleInput' => Yii::t('app','Input组'),
             'radioList' => Yii::t('app','单选按钮'),
@@ -49,7 +50,15 @@ class Generator extends \yiiframe\gii\generators\crud\Generator
             [['listFields', 'formFields', 'inputType'], 'safe'],
         ]);
     }
-
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'listFields' => Yii::t('app', '列表字段'),
+        ];
+    }
     /**
      * Generates code for active field
      * @param string $attribute
@@ -69,13 +78,13 @@ class Generator extends \yiiframe\gii\generators\crud\Generator
                 break;
             case 'dropDownList':
                 case 'dropDownList':
-                return "\$form->field(\$model, '$attribute')->dropDownList(\$cates,['prompt' => Yii::t('app','请选择')])";
+                return "\$form->field(\$model, '$attribute')->dropDownList(['1'=>'下拉选项1','2'=>'下拉选项2','3'=>'下拉选项3'],['prompt' => Yii::t('app','请选择')])";
                 break;
             case 'radioList':
-                return "\$form->field(\$model, '$attribute')->radioList(\common\\enums\StatusEnum::getMap())";
+                return "\$form->field(\$model, '$attribute')->radioList(['1'=>'选项1','2'=>'选项2','3'=>'选项3'])";
                 break;
             case 'checkboxList':
-                return "\$form->field(\$model, '$attribute')->checkboxList(\common\\enums\StatusEnum::getMap())";
+                return "\$form->field(\$model, '$attribute')->checkboxList(['1'=>'选项1','2'=>'选项2','3'=>'选项3'])";
                 break;
             case 'baiduUEditor':
                 if (\yiiframe\plugs\common\AddonHelper::isInstall('Ueditor'))

@@ -2,6 +2,7 @@
 
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
+use common\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $generator yii\gii\generators\crud\Generator */
@@ -33,8 +34,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= "<?= " ?>Html::encode($this->title) ?>
                 </h2>
                 <div class="box-tools">
-                    <?= "<?= " ?> Html::create(['export'], ['target' => '_blank'], Yii::t('app','导出')); ?>
+                    <?= "<?= " ?> Html::create(['export'], [], Yii::t('app','导出')); ?>
                     <?= "<?= " ?> Html::create(['create'], [],Yii::t('app','创建')); ?>
+                    <?= "<?= " ?> Html::a('批量删除', "javascript:void(0);",
+                        [
+                            'class' => 'btn btn-danger btn-xs delete-all',
+                            'onclick' =>"rfDelete(this);return false;"
+                        ]); 
+                    ?>
                 </div>
             </div>
             <div class="box-body table-responsive">
@@ -47,7 +54,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'fixedNumber' => 1,
             //'fixedRightNumber' => 1,
         ],
+        'options' => [
+            'id' => 'grid',
+        ],
         <?= !empty($generator->searchModelClass) ? "'filterModel' => \$searchModel,\n        'columns' => [\n" : "'columns' => [\n"; ?>
+            [
+                'class' => 'yii\grid\CheckboxColumn',
+                'checkboxOptions' => function ($model, $key, $index, $column) {
+                    return ['value' => $model->id];
+                },
+            ],
             [
                 'class' => 'yii\grid\SerialColumn',
                 'visible' => false,
@@ -144,3 +160,38 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    let url = '';
+    // 删除全部
+    $(".delete-all").on("click", function () {
+        url = "<?= "<?= " ?> Url::to(['delete-all']) ?>";
+        appConfirm("您确定要删除这些记录吗?", '请谨慎操作', function (value) {
+            switch (value) {
+                case "defeat":
+                    sendData(url);
+                    break;
+                default:
+            }
+        })
+        
+    });
+    function sendData(url, ids = []) {
+        if (ids.length === 0) {
+            ids = $("#grid").yiiGridView("getSelectedRows");
+        }
+
+        $.ajax({
+            type: "post",
+            url: url,
+            dataType: "json",
+            data: {ids: ids},
+            success: function (data) {
+                if (parseInt(data.code) === 200) {
+                    location.reload();
+                } else {
+                    rfWarning(data.message);
+                }
+            }
+        });
+    }
+</script>

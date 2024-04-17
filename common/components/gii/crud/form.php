@@ -38,7 +38,7 @@ if (Yii::$app->request->isPost) {
         }
     }
     echo "<div form-group'>";
-    echo '<label control-label help" data-original-title title>Form Fields</label>';
+    echo '<label control-label help" data-original-title title>'.Yii::t('app', '表单字段').'</label>';
     echo "<div  class='row'>";
     foreach ($columns as $name => $val) {
         $checked = '';
